@@ -44,10 +44,12 @@ variable "subnets" {
     public = {
       cidr_block = "10.10.1.0/24"
       az         = "us-east-1a",
-    public = true }
+      public = true 
+    }
     private = {
       cidr_block = "10.10.2.0/24"
       az         = "us-east-1b",
-    public = false }
+      public = false
+    }
   }
 }
