@@ -1,8 +1,8 @@
 resource "aws_instance" "web" {
     ami = data.aws_ami.ubuntu.id
     instance_type = local.instance_type
-    subnet_id = aws_subnet.main["public"].id
-    vpc_security_group_ids = [aws_security_group.web.id]
+    subnet_id = module.network.public_subnet_id
+    vpc_security_group_ids = [module.network.aws_sg_id]
     associate_public_ip_address = true
     key_name = var.key_pair_name
     user_data = file("user-data.sh")
@@ -20,7 +20,7 @@ resource "aws_instance" "web" {
 resource "aws_security_group" "imported" { 
   name        = "tf-lea-dev-sg-import" 
   description = "SG importe depuis la console" 
-  vpc_id      = aws_vpc.main.id 
+  vpc_id      = module.network.vpc_id
  
   ingress { 
     from_port   = 443 

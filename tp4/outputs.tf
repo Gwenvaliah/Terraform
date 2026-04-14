@@ -1,21 +1,21 @@
 output "vpc_id" {
   description = "ID du VPC créé"
-  value       = aws_vpc.main.id
+  value       = module.network.vpc_id
 }
 
 output "subnet_public_id" {
   description = "ID du subnet public"
-  value       = aws_subnet.main["public"].id
+  value       = module.network.public_subnet_id
 }
 
 output "subnet_private_id" {
   description = "ID du subnet privé"
-  value       = aws_subnet.main["private"].id
+  value       = module.network.private_subnet_id
 }
 
 output "security_group_id" {
   description = "ID du groupe de sécurité web"
-  value       = aws_security_group.web.id
+  value       = module.network.aws_sg_id
 }
 
 output "instance_public_ip" {
