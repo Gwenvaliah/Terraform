@@ -6,6 +6,12 @@ terraform {
       version = "~> 5.0"
     }
   }
+  backend "s3" { 
+    bucket       = "tf-promo-2026lba-state" 
+    key          = "lea/project.tfstate" 
+    region       = "us-east-1" 
+    use_lockfile = true 
+  }
 }
 
 # Configure the AWS Provider
