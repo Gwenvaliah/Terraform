@@ -1,0 +1,15 @@
+# Terraform
+.terraform/
+.terraform.d/
+*.tfstate
+*.tfvars
+*.tfstate.backup
+*.tfstate.*.backup
+
+# TFLint
+.tflint.d/
+
+# IDE
+.vscode/
+.idea/
+*.swp
