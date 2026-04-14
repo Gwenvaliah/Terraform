@@ -17,6 +17,31 @@ resource "aws_instance" "web" {
     })
 }
 
+resource "aws_security_group" "imported" { 
+  name        = "tf-lea-dev-sg-import" 
+  description = "SG importe depuis la console" 
+  vpc_id      = aws_vpc.main.id 
+ 
+  ingress { 
+    from_port   = 443 
+    to_port     = 443 
+    protocol    = "tcp" 
+    cidr_blocks = ["0.0.0.0/0"] 
+  } 
+ 
+  egress { 
+    from_port   = 0 
+    to_port     = 0 
+    protocol    = "-1" 
+    cidr_blocks = ["0.0.0.0/0"] 
+  } 
+} 
+
+import { 
+  to = aws_security_group.imported 
+  id = "sg-06dbcb585ed07a8c8" 
+} 
+
 # Lecture de l'AMI Ubuntu 22.04 LTS la plus récente
 data "aws_ami" "ubuntu" {
   most_recent = true
